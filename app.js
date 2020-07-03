@@ -8,10 +8,10 @@ const routeMarca = require("./routes/marca")
  ;*/
 
 //servidor
-app.listen(3030,() =>console.log("Concesionario abierto!"))
 
 app.use('/', routeHome)  //request,response
 app.use('/sucursales', routeSucursales)
 app.use('/marcas', routeMarca)
 /*app.use('/heroes', routeHeroes)//request, response*/
 
+app.listen(3030,() =>console.log("Concesionario abierto!"))

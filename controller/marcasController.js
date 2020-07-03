@@ -21,9 +21,21 @@ const marcasController={
         })
 
        res.end()
-    }  
-          
-    }
+    },  
+    
+    detalle:(req,res)=>{ 
+        res.set({'content-type':'text/plain;charset=utf-8'})
+        let parametroMarca = req.params.marcaAuto;
+        res.write("holo")
+        dbConce.forEach((dato)=>{
+        dato.autos.forEach((dato)=>{
+        if(dato.marca == parametroMarca){
+                    res.write('Marca: ' + dato.marca + '\n')
+                    res.write('Modelo: ' + dato.modelo + '\n')
+                    res.write('Telefono: ' + dato.anio + '\n\n')
+                    } res.end("no se encontro la marca")
+    })})}
+}
 
 
 module.exports = marcasController
