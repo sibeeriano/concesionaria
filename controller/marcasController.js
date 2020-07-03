@@ -7,16 +7,16 @@ const marcasController={
 
     marcas:(req,res)=>{      
         res.set({'content-type':'text/plain;charset=utf-8'})
-        res.write("Estas son las marcas con las cuales disponemos en estos momentos: \n" )
-        let mar =[];
-        dbConce.forEach(m=>{
-            m.autos.forEach(m=>{
-                mar.push(m.marca)
+        res.write("Estas son las marcas con las cuales disponemos en estos momentos: \n\n" )
+        let soloMarcas =[];
+        dbConce.forEach((dato)=>{
+            dato.autos.forEach((dato)=>{
+                soloMarcas.push(dato.marca)
             })
         })
-        mar = mar.filter((a, index) =>mar.indexOf(a) === index)
-        mar.forEach(m=>{
-            res.write("-"+m+"\n")
+        let marca = soloMarcas.filter((dato, index) =>soloMarcas.indexOf(dato) === index)
+        marca.forEach((dato)=>{
+            res.write("-"+dato+"\n")
 
         })
 

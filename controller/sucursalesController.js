@@ -19,7 +19,7 @@ sucursal:function(req, res){
     res.set({'content-type':'text/plain;charset=utf-8'})
 
     let parametroSucursal = req.params.sucursal;
-
+    
     //res.write('Estas viendo la sucursal de ' + filtroSucursal + '\n\n')
 
     dbConce.forEach((sucu)=>{
