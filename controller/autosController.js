@@ -1,6 +1,7 @@
 const fs = require ('fs')
 const marcasController = require('./marcasController');
 const { domainToASCII } = require('url');
+const { Z_FILTERED } = require('zlib');
 dbConce = JSON.parse(fs.readFileSync('./data/concesionarias.json', 'utf-8'))
 
 const autosController = {
@@ -51,23 +52,35 @@ const autosController = {
             dato:(req,res)=>{
                 res.set({'content-type':'text/plain;charset=utf-8'});
                 let resultado = false;
-                let parametroColor = req.params.color;
+                let parametroColor = req.params.color;               
+                let parametroAnio =req.params.anio 
                 dbConce.forEach((dato)=>{
                     dato.autos.forEach((dato)=>{
+                    
                     if(dato.color == parametroColor){
+                    
                         res.write('Marca: ' + dato.marca + '\n')
                         res.write('Modelo: ' + dato.modelo + '\n')
-                        res.write('Telefono: ' + dato.anio + '\n')
+                        res.write('Año: ' + dato.anio + '\n')
                         res.write('En tu color favorio!'+ dato.color + '\n\n')
                         resultado = true
-                }
+                            }
+                            if(dato.anio == parametroAnio){
+                                
+                                res.write('Marca: ' + dato.marca + '\n')
+                                res.write('Modelo: ' + dato.modelo + '\n')
+                                res.write('Año: ' + dato.anio + '\n')
+                                res.write('En tu color favorio!'+ dato.color + '\n\n')
+                                resultado = true
+                            }
             })
         })
+        
         if(resultado == false){
             res.write("--------------------------------------------------------------\n")
             res.write('|   Recuerda que los colores hay que ingresarlos en ingles!   |\n')
             res.write('|  si ingresaste el color en ese idioma lo sentimos, no esta  |\n')
-            res.write('|      disponible en este momento en tu color favorito :(     |\n')
+            res.write('|   disponible en este momento en tu color o año favorito :(  |\n')
             res.write("--------------------------------------------------------------\n")
         }
                 res.end()
