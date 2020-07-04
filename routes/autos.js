@@ -6,5 +6,5 @@ const autosController = require ("../controller/autosController");
 
 router.get('/', autosController.autos);
 router.get('/:marca',autosController.marca)
-
+router.get('/:marca/:color/:anio?', autosController.dato)
 module.exports = router
