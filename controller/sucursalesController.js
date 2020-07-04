@@ -19,9 +19,10 @@ sucursal:function(req, res){
     res.set({'content-type':'text/plain;charset=utf-8'})
 
     let parametroSucursal = req.params.sucursal;
-    res.write('Estas viendo la sucursal de ' + parametroSucursal + '\n\n')
+    
     dbConce.forEach((sucu)=>{
         if(sucu.sucursal == parametroSucursal){
+            res.write('Estas viendo la sucursal de ' + parametroSucursal + '\n\n')
             res.write('Sucursal: ' + sucu.sucursal + '\n')
             res.write('Direccion: ' + sucu.direccion + '\n')
             res.write('Telefono: ' + sucu.telefono + '\n\n')

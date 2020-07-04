@@ -4,6 +4,6 @@ const router = express.Router();
 const marcasController = require ("../controller/marcasController")
 
 router.get('/', marcasController.marcas);
-router.get('/marca/:marcaAuto',marcasController.detalle)
+router.get('/:marcaAuto',marcasController.detalle)
 
 module.exports = router
