@@ -5,6 +5,6 @@ const autosController = require ("../controller/autosController");
 
 
 router.get('/', autosController.autos);
-router.get('/:marca',marcasController.marca)
+router.get('/:marca',autosController.marca)
 
 module.exports = router
