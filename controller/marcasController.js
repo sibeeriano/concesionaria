@@ -51,7 +51,7 @@ const marcasController={
             res.write(`----------------------------------\n\n
             Marca: ${dato.marca} 
             Modelo: ${dato.modelo}  
-            Telefono: ${dato.anio} \n\n `)
+            Año: ${dato.anio} \n\n `)
             
             resultado = true;
             }              

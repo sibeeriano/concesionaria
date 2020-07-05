@@ -27,7 +27,7 @@ const autosController = {
                 res.write(`
         Marca: ${dato.marca}
         Modelo: ${dato.modelo} 
-        Telefono: ${dato.anio}
+        Año: ${dato.anio}
     -----------------------------------\n`)   
                                             
             
@@ -59,8 +59,8 @@ const autosController = {
                         res.write("----------------------------------\n\n")
                    res.write('Marca: ' + dato.marca + '\n')
                   res.write('Modelo: ' + dato.modelo + '\n')
-                   res.write('Telefono: ' + dato.anio + '\n\n')
-                   res.write('Telefono: ' + dato.color + '\n\n')
+                   res.write('Año: ' + dato.anio + '\n\n')
+                   res.write('Color: ' + dato.color + '\n\n')
             
                    resultado = true;
                       }              
