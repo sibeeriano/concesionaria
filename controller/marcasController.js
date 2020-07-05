@@ -11,7 +11,9 @@ const marcasController={
          _______________________________________________________________
         |                                                               |                                                                                                             
         |     **ACTUALMENTE ESTAMOS TRABAJANDO CON ESTAS MARCAS!!**     |                                               
-        |_______________________________________________________________|  \n\n`)                                                    
+        |_______________________________________________________________|  
+        
+¡Atajo! */marcas/LaMarcaDeTuInteres => ¿Buscas un modelo en particular? Desafia tu suerte!!\n\n`)                                                    
                                                                                             
         let soloMarcas =[];
         dbConce.forEach((dato)=>{
@@ -25,9 +27,7 @@ const marcasController={
 
         })
 
-       res.end(`
-       
-       /marcas/LaMarcaDeTuInteres => ¿Buscas un modelo en particular? Desafia tu suerte!! `)
+       res.end()
     },  
     
     detalle:(req,res)=>{ 
@@ -59,10 +59,10 @@ const marcasController={
             })
             if(resultado == false){
                 res.write(` 
-         ___________________________________________________________________________
-        |                                                                           |                                                                                                             
-        |   ****Lo sentimos, no hubo suerte! No tenemos esa marca disponible!***    |                                               
-        |___________________________________________________________________________|  \n\n`) 
+     ___________________________________________________________________________
+    |                                                                           |                                                                                                             
+    |   ****Lo sentimos, no hubo suerte! No tenemos esa marca disponible!***    |                                               
+    |___________________________________________________________________________|  \n\n`) 
                 
             }
             res.end()

@@ -7,21 +7,28 @@ dbConce = JSON.parse(fs.readFileSync('./data/concesionarias.json', 'utf-8'))
 const autosController = {
             autos:(req, res)=>{
                 //res.write("Estos son todos nuestros autos disponibles: \n\n")
-                res.write(`
-                *****************************************************************
-                            Estos son todos nuestros autos!
-                    Esperamos que encuentres un modelo que te guste!
-                *****************************************************************
-                
------------------------------------\n\n`);
+                res.set({'content-type':'text/plain;charset=utf-8'})
+                res.write(` 
+         _______________________________________________________________
+        |                                                               |                                                                                                             
+        |               **Estos son todos nuestros autos!               |
+        |        Esperamos que encuentres un modelo que te guste!!**    |                                               
+        |_______________________________________________________________|  \n\n  
+              
+    *ATAJO! /autos/MarcaElegida => Si te gusta una marca en especial podes filtrarla!*  
+             
+         
+
+    -----------------------------------\n`);
                    
                 dbConce.forEach((dato)=>{
                     dato.autos.forEach((dato)=>{
                                 
-                                res.write('Marca: ' + dato.marca + '\n')
-                                res.write('Modelo: ' + dato.modelo + '\n')
-                                res.write('Telefono: ' + dato.anio + '\n\n')
-                                res.write("-----------------------------------\n\n")   
+                res.write(`
+        Marca: ${dato.marca}
+        Modelo: ${dato.modelo} 
+        Telefono: ${dato.anio}
+    -----------------------------------\n`)   
                                             
             
         })
@@ -32,9 +39,20 @@ const autosController = {
                 let parametroAuto = req.params.marca;
                 let resultado = false;
         
-                res.write(`
-                            tuviste suerte?
-                    Los resultados para ${parametroAuto} son:\n\n`);
+                res.write(` 
+         _______________________________________________________________
+        |                                                               |                                                                                                             
+                            **** tuviste suerte?***                   
+        |                                                               |
+                       Los resultados para ${parametroAuto} son:                                               
+        |_______________________________________________________________|  
+        
+    ¡Atajo! autos/MarcaElegida/color => ¿Estará en el color que te gustaria? 
+        (¿sabes que es red? si, hay que ingresar los colores en inglés! )
+        
+       ¡Atajo #2! /autos/MarcaElegida/año => ¿O en el año que queres?
+                (Estos son numeros, no te preocupes del inglés!)
+        \n\n`);
                 dbConce.forEach((dato)=>{
                 dato.autos.forEach((dato)=>{
                 if(dato.marca == parametroAuto){
@@ -49,9 +67,12 @@ const autosController = {
                           })
                                  })
                if(resultado == false){
-                res.write("--------------------------------------------------------------\n")
-                res.write('|Lo sentimos, no hubo suerte! No tenemos esa marca disponible!|\n')
-                res.write("--------------------------------------------------------------\n")
+                res.write(` 
+         _______________________________________________________________
+        |                                                               |                                                                                                             
+        |**Lo sentimos, no hubo suerte! Esa marca no esta disponible!!**|                                               
+        |_______________________________________________________________|  
+                                                                            \n\n`)
                   }
                  res.end()
                         },
@@ -76,9 +97,14 @@ const autosController = {
                     })
                 })
                 if (luz == true) {
-                    res.write('********************************************* \n')
-                    res.write('Estos son tus resultados para '+ idDato +':\n');
-                    res.write('********************************************* \n')
+                    res.write(` 
+         _______________________________________________________________
+        |                       ¡TUVISTE SUERTE!                        |                                                                                                             
+        |                                                               |
+        |    **Estos son tus resultados para el auto de tus sueños**    |                                        
+        |_______________________________________________________________|  
+                                                                            \n\n`)
+                    
                 }
                 luz == false;
             
@@ -98,11 +124,16 @@ const autosController = {
                 })
                 if(luz == false){
                     res.write("\n\n\n")
-                    res.write("                                             ---------------------------------------------------------------------\n")
-                    res.write('                                            |Acordate que los colores se ingresan en ingles, porque? no hay porqué.|\n')
-                    res.write('                                            |  Pero si ingresaste un año y estas leyendo este bello mensaje...     |\n')
-                    res.write('                                            |                EL AUTO NO ESTA, EL AUTO NO ESTA                      |\n')
-                    res.write("                                             ---------------------------------------------------------------------\n")
+                    res.write(` 
+         _________________________________________________________________________
+        |                                                                         |
+        |  Acordate que los colores se ingresan en ingles, porque? no hay porqué. |                                                            |                                                                                                             
+        |       Pero si ingresaste un año y estas leyendo este bello mensaje...   |                                          
+        |                                                                         |
+        |                  EL AUTO NO ESTA, EL AUTO NO ESTA                       |
+        |_________________________________________________________________________|  
+                                                                            \n\n`)               
+                    
 
                 }
             
