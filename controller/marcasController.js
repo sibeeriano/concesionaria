@@ -7,7 +7,12 @@ const marcasController={
 
     marcas:(req,res)=>{      
         res.set({'content-type':'text/plain;charset=utf-8'})
-        res.write("Estas son las marcas con las cuales disponemos en estos momentos: \n\n" )
+        res.write(` 
+         _______________________________________________________________
+        |                                                               |                                                                                                             
+        |     **ACTUALMENTE ESTAMOS TRABAJANDO CON ESTAS MARCAS!!**     |                                               
+        |_______________________________________________________________|  \n\n`)                                                    
+                                                                                            
         let soloMarcas =[];
         dbConce.forEach((dato)=>{
             dato.autos.forEach((dato)=>{
@@ -16,11 +21,13 @@ const marcasController={
         })
         let marca = soloMarcas.filter((dato, index) =>soloMarcas.indexOf(dato) === index)
         marca.forEach((dato)=>{
-            res.write("-"+dato+"\n")
+            res.write(`                 -${dato}\n`)
 
         })
 
-       res.end()
+       res.end(`
+       
+       /marcas/LaMarcaDeTuInteres => ¿Buscas un modelo en particular? Desafia tu suerte!! `)
     },  
     
     detalle:(req,res)=>{ 
@@ -29,26 +36,34 @@ const marcasController={
         res.set({'content-type':'text/plain;charset=utf-8'})
         let parametroMarca = req.params.marcaAuto;
         let resultado = false;
-        
+        res.write(` 
+         _______________________________________________________________
+        |                                                               |                                                                                                             
+                             **** tuviste suerte?***                   
+        |                                                               |
+                          Los resultados para ${parametroMarca} son:                                               
+        |_______________________________________________________________|  \n\n`)
         res.write(`
-                            tuviste suerte?
-                    Los resultados para ${parametroMarca} son:\n\n`);
+                            \n\n`);
         dbConce.forEach((dato)=>{
         dato.autos.forEach((dato)=>{
         if(dato.marca == parametroMarca){
-            res.write("----------------------------------\n\n")
-            res.write('Marca: ' + dato.marca + '\n')
-            res.write('Modelo: ' + dato.modelo + '\n')
-            res.write('Telefono: ' + dato.anio + '\n\n')
+            res.write(`----------------------------------\n\n
+            Marca: ${dato.marca} 
+            Modelo: ${dato.modelo}  
+            Telefono: ${dato.anio} \n\n `)
             
             resultado = true;
             }              
             })
             })
             if(resultado == false){
-                res.write("--------------------------------------------------------------\n")
-                res.write('|Lo sentimos, no hubo suerte! No tenemos esa marca disponible!|\n')
-                res.write("--------------------------------------------------------------\n")
+                res.write(` 
+         ___________________________________________________________________________
+        |                                                                           |                                                                                                             
+        |   ****Lo sentimos, no hubo suerte! No tenemos esa marca disponible!***    |                                               
+        |___________________________________________________________________________|  \n\n`) 
+                
             }
             res.end()
             }
