@@ -8,7 +8,7 @@ const homeController={
         res.write(`
          _________________________________________________________________________________________________________________________________
         |                                                                                                                                 |                                           
-        |                                   **BIENVENIDO! PARA MANEJARTE POR NUESTRO SITIO TENE EN CUENTA ESTOS ATAJOS!!**                |
+        |                             **BIENVENIDO! PARA MANEJARTE POR NUESTRO SITIO TENE EN CUENTA ESTOS ATAJOS!!**                      |
         |                                                                                                                                 |               
         |         /sucursales => Para ver mas info sobre sucursales.                                                                      |
         |         /sucursales/ElNombreDeLaSucursal => te mostramos una sucursal en particular. Con mayuscula, acordate!!                  |
@@ -32,7 +32,7 @@ const homeController={
                                                                   ${sucu.sucursal} \n\n`);
             
             })
-        res.end()
+        res.end() 
     }
 }
 

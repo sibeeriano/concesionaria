@@ -5,15 +5,23 @@ dbConce = JSON.parse(fs.readFileSync('./data/concesionarias.json', 'utf-8')) //.
 const SucursalesController={
     Sucursales:(req,res)=>{      
         res.set({'content-type':'text/plain;charset=utf-8'})
-        res.write("Bienvenido puede localizarnos en cuanlquiera de nuestras sucursales!")
+        res.write(` 
+                                 _______________________________________________________________
+                                |                                                               |                                                                                                             
+                                |   **BIENVENIDO! PUEDE LOCALIZARNOS EN NUESTRAS SUCURSALES!!** |                                               
+                                |_______________________________________________________________|                                                      
+                                                                                            `)
         dbConce.forEach((sucu)=>{
-            res.write(`\n\n`)
-            res.write(`Sucursal:\n ${sucu.sucursal} \n`);
-            res.write(`Dirección:\n ${sucu.direccion} \n`);
-            res.write(`Telefono:\n ${sucu.telefono} \n\n`);                    
+            res.write(`\n\n
+                                Sucursal: ${sucu.sucursal} \n
+                                Dirección: ${sucu.direccion} \n
+                                Telefono:  ${sucu.telefono} \n\n  `)            
         })
          
-        res.end("No dudes en consultarnos!")
+        res.end(`
+        
+                                /sucursales/ElNombreDeLaSucursal => te mostramos una sucursal en particular. Con mayuscula, acordate!! 
+        `)
 },
 sucursal:function(req, res){
     res.set({'content-type':'text/plain;charset=utf-8'})
@@ -22,18 +30,19 @@ sucursal:function(req, res){
     
     dbConce.forEach((sucu)=>{
         if(sucu.sucursal == parametroSucursal){
-            res.write('Estas viendo la sucursal de ' + parametroSucursal + '\n\n')
-            res.write('Sucursal: ' + sucu.sucursal + '\n')
-            res.write('Direccion: ' + sucu.direccion + '\n')
-            res.write('Telefono: ' + sucu.telefono + '\n\n')
-            res.write('Estos son los autos de la sucursal de ' + parametroSucursal+":\n\n")
-            res.write('Cantidad de autos: ' + sucu.autos.length+ '\n\n') 
+            res.write(`
+        Estas viendo la sucursal de ${parametroSucursal} \n
+        Sucursal: ${sucu.sucursal} 
+        Direccion: ${sucu.direccion}
+        Telefono: ${sucu.telefono}
+        Cantidad de autos: ${sucu.autos.length}  
+        Estos son los autos de la sucursal de ${parametroSucursal}:\n\n`) 
+            
             sucu.autos.forEach((datos)=>{
-                res.write('--------------------------------------\n')
-                res.write('MARCA: ' + datos.marca + '\n')
-                res.write('MODELO: ' + datos.modelo + '\n')
-                res.write('ANIO: ' + datos.anio + '\n')
-                res.write('--------------------------------------\n')
+                res.write('                      MARCA: ' + datos.marca + '\n')
+                res.write('                      MODELO: ' + datos.modelo + '\n')
+                res.write('                      AÑO: ' + datos.anio + '\n')
+                res.write('                      --------------------------------------\n')
                 
             })
            res.end()
@@ -43,7 +52,14 @@ sucursal:function(req, res){
         
     })
 
-    res.end("no se encontro la zona")
+    res.end(`  
+                      __________________________________________________________________________________________
+                     |                                                                                          |                                                                                                             
+                     | Seguimos creciendo para tenes una concesionaria cerca de tu zona!no se encontro la zona! |
+                     |                       Por lo pronto no encontramos la zona                               |                                                                      
+                     |__________________________________________________________________________________________|  
+    
+    `)
     }
 
     
