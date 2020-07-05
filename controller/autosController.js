@@ -79,24 +79,24 @@ const autosController = {
 
             dato: function(req,res){
                 res.set({'content-type':'text/plain;charset=utf-8'});
-                let idMarca = req.params.marca;
-                let idDato = req.params.dato;
-                let luz = false;
-                dbConce.forEach(function(sucursal){
-                    sucursal.autos.forEach(function(auto){
-                        if(auto.anio == idDato){
-                            luz = true
+                let parametroMarca = req.params.marca;
+                let parametroDato = req.params.dato;
+                let resultado = false;
+                dbConce.forEach(function(dato){
+                    dato.autos.forEach(function(auto){
+                        if(auto.anio == parametroDato){
+                            resultado = true
                         }
                     })
                 })
-                dbConce.forEach(function(sucursal){
-                    sucursal.autos.forEach(function(auto){
-                        if(auto.color == idDato){
-                            luz = true
+                dbConce.forEach(function(dato){
+                    dato.autos.forEach(function(auto){
+                        if(auto.color == parametroDato){
+                            resultado = true
                         }
                     })
                 })
-                if (luz == true) {
+                if (resultado == true) {
                     res.write(` 
          _______________________________________________________________
         |                       ¡TUVISTE SUERTE!                        |                                                                                                             
@@ -106,23 +106,23 @@ const autosController = {
                                                                             \n\n`)
                     
                 }
-                luz == false;
+                resultado == false;
             
                 dbConce.forEach(function(sucursal){
                     let color = sucursal.autos.filter(function(auto){
-                        return (auto.color == idDato || auto.anio == idDato) && auto.marca == idMarca
+                        return (auto.color == parametroDato || auto.anio == parametroDato) && auto.marca == parametroMarca
                     })
-                    color.forEach(function(colorsito){
+                    color.forEach(function(dato){
                        
-                        res.write('|MARCA: '+ colorsito.marca+  ' \n')
-                        res.write('|MODELO: '+ colorsito.modelo+' \n')
-                        res.write('|AÑO: '+ colorsito.anio+     ' \n')
-                        res.write('|COLOR: '+ colorsito.color+  ' \n')
+                        res.write('|MARCA: '+ dato.marca+  ' \n')
+                        res.write('|MODELO: '+ dato.modelo+' \n')
+                        res.write('|AÑO: '+ dato.anio+     ' \n')
+                        res.write('|COLOR: '+ dato.color+  ' \n')
                         res.write('--------------------------- \n')
-                        luz == true;
+                        resultado == true;
                     })
                 })
-                if(luz == false){
+                if(resultado == false){
                     res.write("\n\n\n")
                     res.write(` 
          _________________________________________________________________________
