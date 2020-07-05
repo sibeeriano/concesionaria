@@ -66,4 +66,4 @@ sucursal:function(req, res){
         
 }
 
-    module.exports = SucursalesController
+    module.exports = SucursalesController 
